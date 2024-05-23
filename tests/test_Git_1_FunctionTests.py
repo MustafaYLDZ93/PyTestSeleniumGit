@@ -77,7 +77,7 @@ class OturumAcmaTestleri(unittest.TestCase):
                 # Hata mesajını kontrol et
                 hata_mesaji = self.driver.find_element(By.CSS_SELECTOR, "[data-test='error']")
                 self.assertTrue(hata_mesaji.is_displayed())
-                self.assertEqual(hata_mesaji.text, "Epic sadface: Username and password do not match any user in this service")
+                self.assertEqual(hata_mesaji.text, "Eppic sadface: Username and password do not match any user in this service")
                 sleep(1)
 
 if __name__ == "__main__":
