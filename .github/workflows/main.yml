@@ -33,11 +33,21 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
+      - uses: actions/checkout@v3
+        if: success() || failure()
+      - run: |
+          cd tests
+          mkdir -p reports
+          pytest test_login_page.py --browser=chrome --html=reports/reports.html
+          chmod 777  /home/runner/work/python-se/python-se/tests/reports/
+
+      - name: Set output
+        if: success() || failure()
+        id: results
+        run: echo "artifactPath=tests/reports/" >> $GITHUB_OUTPUT
+
+      - uses: actions/upload-artifact@v3
+        if: success() || failure()
         with:
-          files: |
-            test-results/**/*.xml
-            test-results/**/*.trx
-            test-results/**/*.json
+          name: test-report
+          path: ${{ steps.results.outputs.artifactPath }}
