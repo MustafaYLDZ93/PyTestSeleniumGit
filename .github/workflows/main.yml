@@ -30,12 +30,12 @@ jobs:
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - name: Run tests
+      - name: Run tests and generate HTML report
         run: |
-          pytest --html=pytest-reporter-html1.html  # HTML raporu oluştur
+          pytest --html=pytest-report.html  # HTML raporu oluştur
 
       - name: Upload test report (HTML)
         uses: actions/upload-artifact@v2
         with:
-          name: pytest-reporter-html1.html  # Oluşturulan HTML raporunu yükle
-          path: pytest-reporter-html1.html
+          name: test-report.html  # Oluşturulan HTML raporunu yükle
+          path: pytest-report.html
