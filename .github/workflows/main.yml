@@ -32,9 +32,12 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          pytest --junitxml=pytest-results.xml
-      - name: Upload test results
-        uses: actions/upload-artifact@v2
+          pytest
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
         with:
-          name: test-results
-          path: pytest-results.xml
+          files: |
+            test-results/**/*.xml
+            test-results/**/*.trx
+            test-results/**/*.json
