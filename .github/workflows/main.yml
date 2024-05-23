@@ -33,7 +33,7 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         if: success() || failure()
       - run: |
           cd tests
@@ -46,7 +46,7 @@ jobs:
         id: results
         run: echo "artifactPath=tests/reports/" >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: test-report
