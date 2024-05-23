@@ -10,9 +10,10 @@ from selenium.webdriver.chrome.options import Options
 class OturumAcmaTestleri(unittest.TestCase):
 
     def setUp(self):
-        self.chrome_options = Options()
-        self.chrome_options.add_argument('--headless')
-        self.driver = webdriver.Chrome(options=chrome_options)
+        options = Options()
+        options.add_argument('--headless')
+        options.binary_location = r"/usr/bin/google-chrome"
+        self.driver = webdriver.Chrome(options=options)
         self.driver.get('https://www.saucedemo.com/v1/index.html')
 
     def tearDown(self):
