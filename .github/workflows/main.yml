@@ -32,16 +32,10 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run tests
         run: |
-          pytest --html=pytest-report.html  # Generate HTML report
+          pytest --html=pytest-reporter-html1.html  # Generate HTML report with desired filename
 
       - name: Upload test report (HTML)
         uses: actions/upload-artifact@v2
         with:
           name: test-report.html  # Upload the generated HTML report
           path: pytest-report.html
-
-      - name: (Optional) Upload test summary (XML)
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-summary.xml  # Upload the XML report if needed
-          path: pytest-report.xml
