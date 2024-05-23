@@ -33,9 +33,9 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-      - name: Upload test summary
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
+        if: success() || failure()
         with:
-          name: test-summary
-          path: test-summary.md
-        if: always()
+          name: test-report
+          path: tests/reports/reports.html
+
