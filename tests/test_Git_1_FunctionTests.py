@@ -10,8 +10,8 @@ from selenium.webdriver.chrome.options import Options
 class OturumAcmaTestleri(unittest.TestCase):
 
     def setUp(self):
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
+        self.chrome_options = Options()
+        self.chrome_options.add_argument('--headless')
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.get('https://www.saucedemo.com/v1/index.html')
 
