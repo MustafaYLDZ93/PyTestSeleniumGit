@@ -4,17 +4,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from time import sleep
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 class OturumAcmaTestleri(unittest.TestCase):
 
     def setUp(self):
-        options = Options()
-        options.add_argument('--headless')
-        options.binary_location = r"/usr/bin/google-chrome"
-        self.driver = webdriver.Chrome(options=options)
+        self.driver = webdriver.Chrome()
         self.driver.get('https://www.saucedemo.com/v1/index.html')
 
     def tearDown(self):
