@@ -37,6 +37,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-summary
-          path: pytest-report.xml
+          path: pytest-report.html
 
 
