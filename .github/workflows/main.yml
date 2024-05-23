@@ -32,10 +32,11 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          pytest
-      - uses: actions/upload-artifact@v3
-        if: success() || failure()
+          pytest --junitxml=pytest-report.xml
+      - name: Upload test summary
+        uses: actions/upload-artifact@v2
         with:
-          name: test-report
-          path: tests/reports/reports.html
+          name: test-summary
+          path: pytest-report.xml
+
 
