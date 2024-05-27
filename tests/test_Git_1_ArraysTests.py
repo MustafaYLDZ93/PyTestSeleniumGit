@@ -11,10 +11,10 @@ class OturumAcmaTestleri(unittest.TestCase):
 
     def setUp(self):
         options = Options()
-        options.add_argument('--headless')
+        options.add_argument("--window-size=1920,1080")
         options.binary_location = r"/usr/bin/google-chrome"
         self.driver = webdriver.Chrome(options=options)
-        self.driver.get('https://www.saucedemo.com/v1/index.html')
+        self.driver.get("https://www.saucedemo.com/v1/index.html")
 
     def tearDown(self):
         self.driver.quit()
@@ -35,38 +35,49 @@ class OturumAcmaTestleri(unittest.TestCase):
             giris_dugmesi = self.driver.find_element(By.ID, "login-button")
             giris_dugmesi.click()
 
-            if kullanici["kullanici_adi"] == "standard_user" and kullanici["sifre"] == "secret_sauce":
+            if (
+                kullanici["kullanici_adi"] == "standard_user"
+                and kullanici["sifre"] == "secret_sauce"
+            ):
                 # Oturum açıldığını kontrol et
-                WebDriverWait(self.driver, 10).until(
-                    EC.url_contains("/inventory.html")
-                )
+                WebDriverWait(self.driver, 10).until(EC.url_contains("/inventory.html"))
 
                 # Ürüne tıkla ve sepete ekle
                 ilk_urun = self.driver.find_elements(By.CLASS_NAME, "inventory_item")[0]
-                urun_adi = ilk_urun.find_element(By.CLASS_NAME, "inventory_item_name").text
-                urun_fiyati_true = ilk_urun.find_element(By.CLASS_NAME, "inventory_item_price").text
-                urun_fiyati = '29.99'
+                urun_adi = ilk_urun.find_element(
+                    By.CLASS_NAME, "inventory_item_name"
+                ).text
+                urun_fiyati_true = ilk_urun.find_element(
+                    By.CLASS_NAME, "inventory_item_price"
+                ).text
+                urun_fiyati = "29.99"
                 urun_ekle_dugmesi = ilk_urun.find_element(By.CLASS_NAME, "btn_primary")
                 urun_ekle_dugmesi.click()
                 sleep(1)
 
                 # Sepete git ve bilgileri doğrula
-                sepet_linki = self.driver.find_element(By.CLASS_NAME, "shopping_cart_link")
+                sepet_linki = self.driver.find_element(
+                    By.CLASS_NAME, "shopping_cart_link"
+                )
                 sepet_linki.click()
                 sleep(1)
 
-                WebDriverWait(self.driver, 10).until(
-                    EC.url_contains("/cart.html")
-                )
+                WebDriverWait(self.driver, 10).until(EC.url_contains("/cart.html"))
 
-                sepet_urun_adi = self.driver.find_element(By.CLASS_NAME, "inventory_item_name").text
-                sepet_urun_fiyati = self.driver.find_element(By.CLASS_NAME, "inventory_item_price").text
+                sepet_urun_adi = self.driver.find_element(
+                    By.CLASS_NAME, "inventory_item_name"
+                ).text
+                sepet_urun_fiyati = self.driver.find_element(
+                    By.CLASS_NAME, "inventory_item_price"
+                ).text
 
                 self.assertEqual(urun_adi, sepet_urun_adi)
                 self.assertEqual(urun_fiyati, sepet_urun_fiyati)
 
                 # Menüden çıkış yap
-                menu_dugmesi = self.driver.find_element(By.CSS_SELECTOR, ".bm-burger-button")
+                menu_dugmesi = self.driver.find_element(
+                    By.CSS_SELECTOR, ".bm-burger-button"
+                )
                 menu_dugmesi.click()
                 sleep(1)
 
@@ -75,9 +86,14 @@ class OturumAcmaTestleri(unittest.TestCase):
 
             else:
                 # Hata mesajını kontrol et
-                hata_mesaji = self.driver.find_element(By.CSS_SELECTOR, "[data-test='error']")
+                hata_mesaji = self.driver.find_element(
+                    By.CSS_SELECTOR, "[data-test='error']"
+                )
                 self.assertTrue(hata_mesaji.is_displayed())
-                self.assertEqual(hata_mesaji.text, "Epic sadface: Username and password do not match any user in this service")
+                self.assertEqual(
+                    hata_mesaji.text,
+                    "Epic sadface: Username and password do not match any user in this service",
+                )
                 sleep(1)  # pragma: no cover
 
 
