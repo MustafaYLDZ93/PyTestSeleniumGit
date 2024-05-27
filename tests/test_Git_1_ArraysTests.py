@@ -11,7 +11,7 @@ class OturumAcmaTestleri(unittest.TestCase):
 
     def setUp(self):
         options = Options()
-        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--headless")
         options.binary_location = r"/usr/bin/google-chrome"
         self.driver = webdriver.Chrome(options=options)
         self.driver.get("https://www.saucedemo.com/v1/index.html")
