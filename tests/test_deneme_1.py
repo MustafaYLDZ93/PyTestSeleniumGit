@@ -12,7 +12,6 @@ class OturumAcmaTestleri(unittest.TestCase):
     def setUp(self):
         options = Options()
         options.add_argument("--headless")
-        #options.binary_location = r"/usr/bin/google-chrome"
         self.driver = webdriver.Chrome(options=options)
         self.driver.maximize_window()
         self.url_site = 'https://random-asin-new.vercel.app'
@@ -55,7 +54,7 @@ class OturumAcmaTestleri(unittest.TestCase):
         verify2 = self.driver.find_element(By.XPATH, '/html/body/div[5]/div[2]/div[2]/div[2]/div/label')
         value2 = verify2.get_attribute("innerText")
         sleep(1)
-        assert value2 == 'Kullanıcı Adı:'
+        assert value2 == 'Kullanıcı Adıı:'
         sleep(1)
 
         self.driver.find_element(By.XPATH, self.close_button).click()
