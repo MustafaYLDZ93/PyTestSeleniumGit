@@ -11,10 +11,9 @@ class OturumAcmaTestleri(unittest.TestCase):
 
     def setUp(self):
         options = Options()
+        options.add_argument("--headless")
+        options.binary_location = r"/usr/bin/google-chrome"
         self.driver = webdriver.Chrome(options=options)
-        options.add_argument("--disable-gpu")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
         self.driver.maximize_window()
         self.url_site = 'https://random-asin-new.vercel.app'
         self.email_testid = '//input[@data-testid="login-email"]'
@@ -49,7 +48,8 @@ class OturumAcmaTestleri(unittest.TestCase):
         sleep(1)
         self.driver.find_element(By.XPATH, "//input[@data-testid='login-remember-me']").click()
         sleep(1)
-        self.driver.find_element(By.XPATH, f"//*[contains(text(), 'Şifremi Unuttum')]").click()
+        forgot_password_button = self.driver.find_element(By.XPATH, "//*[contains(text(), 'Şifremi Unuttum')]")
+        self.driver.execute_script("arguments[0].click();", forgot_password_button)
         sleep(1)
 
         verify2 = self.driver.find_element(By.XPATH, '/html/body/div[5]/div[2]/div[2]/div[2]/div/label')
