@@ -12,7 +12,7 @@ class OturumAcmaTestleri(unittest.TestCase):
     def setUp(self):
         options = Options()
         options.add_argument("--headless")
-        options.binary_location = r"/usr/bin/google-chrome"
+        #options.binary_location = r"/usr/bin/google-chrome"
         self.driver = webdriver.Chrome(options=options)
         self.driver.maximize_window()
         self.url_site = 'https://random-asin-new.vercel.app'
@@ -33,7 +33,7 @@ class OturumAcmaTestleri(unittest.TestCase):
         print("Step 2: Assert - Login Container")
         self.driver.get(self.url_site)
         wait = WebDriverWait(self.driver, 1)
-        self.driver.find_element(By.XPATH, f"//*[contains(text(), 'Giriş Yap')]").click()
+        self.driver.find_element(By.XPATH, "//*[contains(text(), 'Giriş Yap')]").click()
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".auth-container")))
         self.driver.find_element(By.XPATH, self.email_testid).send_keys(self.email)
         self.driver.find_element(By.XPATH, self.password_testid).send_keys(self.password_valid)
