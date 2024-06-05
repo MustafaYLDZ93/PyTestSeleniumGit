@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PyTestSeleniumGit.iml" filepath="$PROJECT_DIR$/PyTestSeleniumGit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SaucedemoTests.iml" filepath="$PROJECT_DIR$/SaucedemoTests.iml" />
     </modules>
   </component>
 </project>
