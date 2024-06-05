@@ -4,6 +4,8 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
+
 
 from pages.Saucedemo1_inventory_page import InventoryPage
 from pages.Saucedemo1_login_page import LoginPage
@@ -11,8 +13,8 @@ from pages.Saucedemo1_login_page import LoginPage
 
 @pytest.fixture
 def driver():
-    # options = Options()
-    # options.add_argument("--headless")
+    options = Options()
+    options.add_argument("--headless")
     driver = webdriver.Chrome()
     driver.maximize_window()
     base_url = "https://www.saucedemo.com/v1/index.html"
