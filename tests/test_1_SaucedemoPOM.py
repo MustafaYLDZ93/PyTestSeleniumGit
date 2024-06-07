@@ -15,7 +15,7 @@ from pages.Saucedemo1_login_page import LoginPage
 def driver():
     options = Options()
     options.add_argument("--headless")
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(options=options)
     driver.maximize_window()
     base_url = "https://www.saucedemo.com/v1/index.html"
     driver.get(base_url)
